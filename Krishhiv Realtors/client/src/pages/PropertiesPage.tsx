@@ -7,7 +7,7 @@ import { FiFilter, FiGrid, FiList, FiX, FiSliders, FiSearch } from 'react-icons/
 import { propertyService } from '../api/services';
 import { PropertyCard } from '../components/property/PropertyCard';
 import { PropertyCardSkeleton } from '../components/ui/Skeleton';
-import { PropertyFilters, PropertyType } from '../types';
+import type { PropertyFilters, PropertyType } from '../types';
 import { PROPERTY_TYPES, PRICE_RANGES, BEDROOM_OPTIONS, SORT_OPTIONS, CITIES, POSSESSION_OPTIONS, AMENITIES_LIST } from '../constants';
 import { useDebounce } from '../hooks';
 import { staggerContainer, staggerItem } from '../animations/variants';
