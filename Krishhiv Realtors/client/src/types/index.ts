@@ -28,6 +28,7 @@ export interface Property {
   highlights: string[];
   rera?: string;
   isFeatured: boolean;
+  featuredLevel?: 1 | 2;
   isNew: boolean;
   isVerified: boolean;
   views: number;

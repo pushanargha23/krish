@@ -96,7 +96,7 @@ export const HeroSection: React.FC = () => {
               className="glass rounded-2xl p-2 max-w-4xl mx-auto shadow-luxury"
             >
               {/* Type Tabs */}
-              <div className="flex gap-1 mb-3 px-2 pt-2">
+              <div className="flex gap-1 mb-3 px-2 pt-2 overflow-x-auto scrollbar-hide">
                 {PROPERTY_TYPES.slice(0, 5).map(type => (
                   <button
                     key={type.value}

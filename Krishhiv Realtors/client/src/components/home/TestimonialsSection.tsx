@@ -57,7 +57,7 @@ export const TestimonialsSection: React.FC = () => {
   const next = () => setActive(i => (i + 1) % TESTIMONIALS.length);
 
   return (
-    <section className="section-padding bg-primary relative overflow-hidden">
+    <section className="py-12 md:py-20 lg:py-28 bg-primary relative overflow-hidden">
       <div className="absolute inset-0 bg-noise opacity-20" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl" />
 

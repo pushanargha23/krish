@@ -76,10 +76,20 @@ export const FeaturedProperties: React.FC = () => {
     staleTime: 5 * 60 * 1000,
   });
 
-  const properties = data?.data?.data || MOCK_PROPERTIES;
+  const properties = data?.data?.data || [];
+  
+  // Sort by featuredLevel if available (1 is highest priority)
+  let displayProperties = [...properties].sort((a, b) => {
+    const scoreA = a.featuredLevel === 1 ? 2 : a.featuredLevel === 2 ? 1 : 0;
+    const scoreB = b.featuredLevel === 1 ? 2 : b.featuredLevel === 2 ? 1 : 0;
+    return scoreB - scoreA;
+  });
+  
+  // Limit to top 5 at most
+  displayProperties = displayProperties.slice(0, 5);
 
   return (
-    <section className="section-padding bg-background">
+    <section className="py-12 md:py-20 lg:py-28 bg-background">
       <div className="container-custom">
         <SectionHeader
           tag="Handpicked for You"
@@ -96,12 +106,12 @@ export const FeaturedProperties: React.FC = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {isLoading
-            ? Array.from({ length: 6 }).map((_, i) => (
+            ? Array.from({ length: 3 }).map((_, i) => (
                 <motion.div key={i} variants={staggerItem}>
                   <PropertyCardSkeleton />
                 </motion.div>
               ))
-            : properties.map(property => (
+            : displayProperties.map((property) => (
                 <motion.div key={property._id} variants={staggerItem}>
                   <PropertyCard property={property} />
                 </motion.div>

@@ -52,7 +52,7 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
   const setStoredValue = useCallback((val: T | ((prev: T) => T)) => {
     setValue(prev => {
       const next = typeof val === 'function' ? (val as (p: T) => T)(prev) : val;
-      localStorage.setItem(key, JSON.stringify(next));
+      try { localStorage.setItem(key, JSON.stringify(next)); } catch (e) {}
       return next;
     });
   }, [key]);

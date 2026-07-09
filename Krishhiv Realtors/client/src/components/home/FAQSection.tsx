@@ -37,7 +37,7 @@ export const FAQSection: React.FC = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="section-padding bg-background">
+    <section className="py-12 md:py-20 lg:py-28 bg-background">
       <div className="container-custom">
         <SectionHeader
           tag="Got Questions?"

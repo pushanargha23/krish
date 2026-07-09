@@ -1,7 +1,6 @@
 import type { PropertyFilters } from '../types';
-import { fetchPropertiesFromSheet } from '../utils/googleSheets';
+import { getProperties } from '../utils/csvParser';
 import { 
-  mockProperties, 
   mockBlogs, 
   mockBuilders, 
   mockTestimonials, 
@@ -13,7 +12,7 @@ import {
 export const propertyService = {
   getAll: async (filters: PropertyFilters) => {
     try {
-      const properties = await fetchPropertiesFromSheet();
+      const properties = await getProperties();
       let filtered = [...properties];
       
       if (filters.type) filtered = filtered.filter(p => p.type === filters.type);
@@ -30,7 +29,7 @@ export const propertyService = {
 
   getBySlug: async (slug: string) => {
     try {
-      const properties = await fetchPropertiesFromSheet();
+      const properties = await getProperties();
       const property = properties.find(p => p.slug === slug);
       if (!property) throw new Error('Property not found');
       return { data: { data: property, success: true } };
@@ -41,7 +40,7 @@ export const propertyService = {
 
   getFeatured: async () => {
     try {
-      const properties = await fetchPropertiesFromSheet();
+      const properties = await getProperties();
       const data = properties.filter(p => p.isFeatured);
       return { data: { data, success: true } };
     } catch (error) {
@@ -51,7 +50,7 @@ export const propertyService = {
 
   getRelated: async (id: string, type: string) => {
     try {
-      const properties = await fetchPropertiesFromSheet();
+      const properties = await getProperties();
       const data = properties
         .filter(p => p.type === type && p._id !== id)
         .slice(0, 3);
@@ -63,7 +62,7 @@ export const propertyService = {
 
   search: async (query: string) => {
     try {
-      const properties = await fetchPropertiesFromSheet();
+      const properties = await getProperties();
       const results = properties.filter(prop => 
         prop.title?.toLowerCase().includes(query.toLowerCase()) ||
         prop.location.address?.toLowerCase().includes(query.toLowerCase())
@@ -74,7 +73,7 @@ export const propertyService = {
     }
   },
 
-  toggleWishlist: async (propertyId: string, userId: string) => {
+  toggleWishlist: async (_propertyId: string, _userId: string) => {
     try {
       return { data: { data: { wishlisted: true }, success: true } };
     } catch (error) {
@@ -82,7 +81,7 @@ export const propertyService = {
     }
   },
 
-  trackView: async (propertyId: string) => {
+  trackView: async (_propertyId: string) => {
     try {
       return { data: { success: true } };
     } catch (error) {
@@ -92,7 +91,7 @@ export const propertyService = {
 };
 
 export const leadService = {
-  create: async (payload: {
+  create: async (_payload: {
     name: string; email: string; phone: string;
     message?: string; propertyId?: string; source: string;
   }) => {
@@ -105,7 +104,7 @@ export const leadService = {
 };
 
 export const appointmentService = {
-  book: async (payload: {
+  book: async (_payload: {
     name: string; email: string; phone: string;
     propertyId: string; date: string; time: string; type: string;
   }) => {
@@ -204,7 +203,7 @@ export const careerService = {
     }
   },
 
-  apply: async (careerId: string, _formData: FormData) => {
+  apply: async (_careerId: string, _formData: FormData) => {
     try {
       return { data: { success: true } };
     } catch (error) {
@@ -214,7 +213,7 @@ export const careerService = {
 };
 
 export const contactService = {
-  send: async (payload: { name: string; email: string; phone: string; subject: string; message: string }) => {
+  send: async (_payload: { name: string; email: string; phone: string; subject: string; message: string }) => {
     try {
       return { data: { success: true } };
     } catch (error) {
@@ -224,7 +223,7 @@ export const contactService = {
 };
 
 export const newsletterService = {
-  subscribe: async (email: string) => {
+  subscribe: async (_email: string) => {
     try {
       return { data: { success: true } };
     } catch (error) {

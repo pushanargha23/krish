@@ -52,7 +52,7 @@ export const BlogSection: React.FC = () => {
   const { ref, inView } = useInView();
 
   return (
-    <section className="section-padding bg-background">
+    <section className="py-12 md:py-20 lg:py-28 bg-background">
       <div className="container-custom">
         <SectionHeader
           tag="Latest Insights"

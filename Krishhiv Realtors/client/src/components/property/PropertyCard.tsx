@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiDownload, FiMaximize2, FiDroplet, FiMapPin, FiEye } from 'react-icons/fi';
+import { FiDownload, FiMaximize2, FiDroplet, FiMapPin, FiEye, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import type { Property } from '../../types';
 import { formatPrice, formatArea } from '../../utils';
 import { cardHover, imageZoom } from '../../animations/variants';
@@ -13,7 +13,20 @@ interface PropertyCardProps {
 
 export const PropertyCard: React.FC<PropertyCardProps> = ({ property, variant = 'default' }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const primaryImage = property.images.find(i => i.isPrimary) || property.images[0];
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev + 1) % property.images.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev - 1 + property.images.length) % property.images.length);
+  };
 
   const handleDownload = (e: React.MouseEvent, url: string) => {
     e.preventDefault();
@@ -43,7 +56,7 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property, variant = 
         variants={cardHover}
         initial="rest"
         whileHover="hover"
-        className="property-card flex overflow-hidden"
+        className="property-card flex overflow-hidden shadow-2xl hover:shadow-luxury rounded-2xl transition-shadow duration-300 bg-white"
       >
         <div className="relative w-48 flex-shrink-0 overflow-hidden">
           <motion.img
@@ -80,21 +93,52 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property, variant = 
       variants={cardHover}
       initial="rest"
       whileHover="hover"
-      className="property-card group"
+      className="property-card group shadow-2xl hover:shadow-luxury rounded-2xl transition-shadow duration-300 bg-white"
     >
       {/* Image */}
-      <div className="relative overflow-hidden h-56">
+      <div className="relative overflow-hidden h-56 group/carousel">
         <motion.img
-          variants={imageZoom}
-          src={primaryImage?.url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600'}
-          alt={property.title}
+          key={currentImageIndex}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          src={property.images[currentImageIndex]?.url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600'}
+          alt={`${property.title} - Image ${currentImageIndex + 1}`}
           className="w-full h-full object-cover"
           onLoad={() => setImageLoaded(true)}
         />
         {!imageLoaded && <div className="absolute inset-0 skeleton" />}
 
+        {/* Carousel Controls */}
+        {property.images.length > 1 && (
+          <>
+            <button
+              onClick={prevImage}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all backdrop-blur-sm z-10"
+            >
+              <FiChevronLeft size={18} />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all backdrop-blur-sm z-10"
+            >
+              <FiChevronRight size={18} />
+            </button>
+            
+            {/* Dots */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+              {property.images.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${idx === currentImageIndex ? 'bg-white scale-125' : 'bg-white/50'}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
         {/* Badges */}
         <div className="absolute top-3 left-3 flex gap-2">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { HeroSection } from '../components/home/HeroSection';
+import { BannerSlider } from '../components/home/BannerSlider';
 import { TrustedBy } from '../components/home/TrustedBy';
 import { FeaturedProperties } from '../components/home/FeaturedProperties';
 import { PropertyCategories } from '../components/home/PropertyCategories';
@@ -36,6 +37,7 @@ const HomePage: React.FC = () => (
     </Helmet>
 
     <HeroSection />
+    <BannerSlider />
     <TrustedBy />
     <FeaturedProperties />
     <PropertyCategories />

@@ -15,7 +15,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { formatPrice, formatArea, calculateEMI, getWhatsAppLink, shareProperty } from '../utils';
 import { APP_WHATSAPP } from '../constants';
 import { fadeUp, staggerContainer, staggerItem } from '../animations/variants';
-import { useInView } from '../hooks';
+import FacilityIcon from '../components/property/FacilityIcon';
 
 // EMI Calculator Component
 const EMICalculator: React.FC<{ price: number }> = ({ price }) => {
@@ -126,7 +126,6 @@ const PropertyDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { toggle, isWishlisted } = useWishlist();
   const [activeImage, setActiveImage] = useState(0);
-  const { ref, inView } = useInView();
 
   const { data, isLoading } = useQuery({
     queryKey: ['property', slug],
@@ -338,17 +337,12 @@ Each residence is a masterpiece of design, featuring Italian marble flooring, Ga
               </div>
             )}
 
-            {/* Amenities */}
+            {/* Amenities / Available Facilities */}
             <div className="bg-surface rounded-xl border border-gray-100 shadow-card p-6">
-              <h2 className="font-heading font-semibold text-primary text-xl mb-5">Amenities</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              <h2 className="font-heading font-semibold text-primary text-xl mb-6">Available Facilities</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-8 gap-x-4">
                 {property.amenities.map(amenity => (
-                  <div key={amenity} className="flex items-center gap-2.5 text-sm text-textMuted">
-                    <div className="w-6 h-6 bg-secondary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                      <FiCheck size={12} className="text-secondary" />
-                    </div>
-                    {amenity}
-                  </div>
+                  <FacilityIcon key={amenity} name={amenity} />
                 ))}
               </div>
             </div>

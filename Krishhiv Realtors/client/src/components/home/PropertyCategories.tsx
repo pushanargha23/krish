@@ -47,7 +47,7 @@ export const PropertyCategories: React.FC = () => {
   const { ref, inView } = useInView();
 
   return (
-    <section className="section-padding bg-primary relative overflow-hidden">
+    <section className="py-12 md:py-20 lg:py-28 bg-primary relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-noise opacity-20" />
       <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />

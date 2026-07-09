@@ -5,6 +5,26 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-primary: 20 83 45; /* #14532D */
+    --color-secondary: 34 197 94; /* #22C55E */
+    --color-accent: 163 230 53; /* #A3E635 */
+    --color-background: 239 250 241; /* #EFFAF1 */
+    --color-surface: 255 255 255; /* #FFFFFF */
+    --color-text-primary: 16 35 27; /* #10231B */
+    --color-text-muted: 95 113 104; /* #5F7168 */
+  }
+
+  html.dark {
+    --color-primary: 20 83 45; /* Keep branding */
+    --color-secondary: 34 197 94; /* Keep branding */
+    --color-accent: 163 230 53; /* Keep branding */
+    --color-background: 8 16 11; /* Very dark green/black */
+    --color-surface: 13 28 19; /* Dark surface */
+    --color-text-primary: 240 253 244; /* Light text */
+    --color-text-muted: 150 170 160; /* Muted light text */
+  }
+
   *, *::before, *::after { box-sizing: border-box; }
 
   html {
@@ -151,16 +171,6 @@
 
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-}
-
-/* Dark Mode */
-.dark body {
-  @apply bg-primary text-white;
-}
-
-.dark .glass-light {
-  background: rgba(20, 83, 45, 0.8);
-  border-color: rgba(34, 197, 94, 0.15);
 }
 
 /* Page Transition */

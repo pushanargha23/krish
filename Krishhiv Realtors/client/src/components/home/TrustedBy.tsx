@@ -8,7 +8,7 @@ export const TrustedBy: React.FC = () => {
   const { ref, inView } = useInView();
 
   return (
-    <section className="py-14 bg-surface border-y border-gray-100">
+    <section className="py-12 md:py-20 lg:py-24 bg-surface border-y border-gray-100">
       <div className="container-custom">
         <motion.div
           ref={ref}

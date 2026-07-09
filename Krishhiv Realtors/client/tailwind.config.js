@@ -5,13 +5,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#14532D',
-        secondary: '#22C55E',
-        accent: '#A3E635',
-        background: '#EFFAF1',
-        surface: '#FFFFFF',
-        textPrimary: '#10231B',
-        textMuted: '#5F7168',
+        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+        accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        background: 'rgb(var(--color-background) / <alpha-value>)',
+        surface: 'rgb(var(--color-surface) / <alpha-value>)',
+        textPrimary: 'rgb(var(--color-text-primary) / <alpha-value>)',
+        textMuted: 'rgb(var(--color-text-muted) / <alpha-value>)',
         gold: {
           light: '#BBF7D0',
           DEFAULT: '#22C55E',

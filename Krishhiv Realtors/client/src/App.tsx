@@ -16,6 +16,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
+const DataUploadPage = lazy(() => import('./pages/DataUploadPage'));
 
 // Placeholder pages (to be expanded)
 const PlaceholderPage: React.FC<{ title: string }> = ({ title }) => (
@@ -64,6 +65,7 @@ const AppRoutes: React.FC = () => (
         <Route path="/properties/:slug" element={<PropertyDetailPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/data-upload" element={<DataUploadPage />} />
         <Route path="/developers" element={<PlaceholderPage title="Our Developers" />} />
         <Route path="/services" element={<PlaceholderPage title="Our Services" />} />
         <Route path="/blog" element={<PlaceholderPage title="Blog & Insights" />} />

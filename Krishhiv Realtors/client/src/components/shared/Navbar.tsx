@@ -29,6 +29,7 @@ const NAV_LINKS = [
   { label: 'About', to: '/about' },
   { label: 'Blog', to: '/blog' },
   { label: 'Contact', to: '/contact' },
+  { label: 'Upload Data', to: '/data-upload' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -55,34 +56,19 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* Top Bar */}
-      <div className="hidden lg:flex items-center justify-between px-8 py-2 bg-primary text-white/70 text-xs">
-        <span>India's Most Trusted Luxury Real Estate Consultancy</span>
-        <div className="flex items-center gap-6">
-          <a href={`tel:${APP_PHONE}`} className="flex items-center gap-1.5 hover:text-secondary transition-colors">
-            <FiPhone size={12} /> {APP_PHONE}
-          </a>
-          <span>Mon–Sat: 9AM – 7PM</span>
-        </div>
-      </div>
+      {/* Top Bar Removed */}
 
       {/* Main Navbar */}
       <motion.nav
         variants={navbarVariants}
         animate={isScrolled ? 'scrolled' : 'top'}
-        className="fixed top-0 left-0 right-0 z-40 lg:top-8"
-        style={{ top: isScrolled ? 0 : undefined }}
+        className="fixed z-50 left-1/2 -translate-x-1/2 transition-all duration-300 w-[95%] max-w-7xl rounded-2xl bg-primary/80 backdrop-blur-xl border border-white/10 shadow-2xl"
+        style={{ top: isScrolled ? '1rem' : '2rem' }}
       >
         <div className="container-custom flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-gradient-gold rounded-xl flex items-center justify-center shadow-gold">
-              <span className="font-heading font-bold text-primary text-lg">K</span>
-            </div>
-            <div className="hidden sm:block">
-              <div className="font-heading font-bold text-white text-lg leading-tight">{APP_NAME}</div>
-              <div className="text-secondary text-[10px] tracking-widest uppercase">Premium Realty</div>
-            </div>
+            <img src="/cropped-Krisshiv-Logo-512X512.png" alt="Krishhiv Realtors Logo" className="h-10 lg:h-14 w-auto object-contain bg-white rounded-xl shadow-md p-1 transition-transform duration-300 group-hover:scale-105" />
           </Link>
 
           {/* Desktop Nav */}
@@ -155,34 +141,12 @@ export const Navbar: React.FC = () => {
             {/* Theme */}
             <button
               onClick={toggleTheme}
-              className="hidden md:flex p-2.5 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all"
+              className="flex p-2.5 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all"
             >
               {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
             </button>
 
-            {/* Auth */}
-            {isAuthenticated ? (
-              <div className="relative group">
-                <button className="flex items-center gap-2 px-3 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all">
-                  <div className="w-7 h-7 bg-gradient-gold rounded-full flex items-center justify-center text-primary text-xs font-bold">
-                    {user?.name?.[0]?.toUpperCase()}
-                  </div>
-                  <span className="hidden md:block text-sm">{user?.name?.split(' ')[0]}</span>
-                </button>
-                <div className="absolute right-0 top-full mt-2 w-48 glass-dark rounded-xl overflow-hidden shadow-luxury opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  <Link to="/profile" className="block px-4 py-3 text-sm text-white/80 hover:text-secondary hover:bg-white/5">My Profile</Link>
-                  <Link to="/wishlist" className="block px-4 py-3 text-sm text-white/80 hover:text-secondary hover:bg-white/5">Wishlist</Link>
-                  {user?.role === 'admin' && (
-                    <Link to="/admin" className="block px-4 py-3 text-sm text-secondary hover:bg-white/5">Admin Panel</Link>
-                  )}
-                  <button onClick={logout} className="w-full text-left px-4 py-3 text-sm text-red-400 hover:bg-white/5">Logout</button>
-                </div>
-              </div>
-            ) : (
-              <Link to="/login" className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-gold text-primary text-sm font-semibold rounded-xl hover:shadow-gold transition-all">
-                <FiUser size={15} /> Login
-              </Link>
-            )}
+            {/* Auth section removed as per request */}
 
             {/* Mobile Menu */}
             <button
@@ -288,15 +252,7 @@ export const Navbar: React.FC = () => {
                 ))}
               </nav>
               <div className="p-4 border-t border-white/10 mt-4">
-                {!isAuthenticated && (
-                  <Link
-                    to="/login"
-                    onClick={() => setMobileOpen(false)}
-                    className="btn-primary w-full justify-center"
-                  >
-                    Login / Register
-                  </Link>
-                )}
+                {/* Mobile login button removed */}
               </div>
             </motion.div>
           </>
