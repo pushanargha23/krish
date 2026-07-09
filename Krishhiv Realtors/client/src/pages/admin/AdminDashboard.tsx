@@ -18,9 +18,9 @@ const MONTHLY_LEADS = [
 ];
 
 const PROPERTY_TYPES_DATA = [
-  { name: 'Apartment', value: 45, color: '#0B1F3A' },
-  { name: 'Villa', value: 20, color: '#C8A96A' },
-  { name: 'Luxury', value: 15, color: '#D4AF37' },
+  { name: 'Apartment', value: 45, color: '#14532D' },
+  { name: 'Villa', value: 20, color: '#22C55E' },
+  { name: 'Luxury', value: 15, color: '#A3E635' },
   { name: 'Commercial', value: 12, color: '#6B7280' },
   { name: 'Plot', value: 8, color: '#9CA3AF' },
 ];
@@ -34,8 +34,8 @@ const RECENT_LEADS = [
 ];
 
 const STATUS_COLORS: Record<string, string> = {
-  new: 'bg-blue-100 text-blue-700',
-  contacted: 'bg-yellow-100 text-yellow-700',
+  new: 'bg-emerald-100 text-emerald-700',
+  contacted: 'bg-lime-100 text-lime-700',
   qualified: 'bg-purple-100 text-purple-700',
   converted: 'bg-green-100 text-green-700',
   lost: 'bg-red-100 text-red-700',
@@ -44,7 +44,7 @@ const STATUS_COLORS: Record<string, string> = {
 const StatCard: React.FC<{ icon: React.ReactNode; label: string; value: string; change: string; positive?: boolean }> = ({
   icon, label, value, change, positive = true,
 }) => (
-  <div className="bg-white rounded-xl border border-gray-100 shadow-card p-5">
+  <div className="bg-surface rounded-xl border border-gray-100 shadow-card p-5">
     <div className="flex items-center justify-between mb-3">
       <div className="w-10 h-10 bg-primary/5 rounded-xl flex items-center justify-center text-primary">{icon}</div>
       <span className={`text-xs font-medium px-2 py-1 rounded-full ${positive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
@@ -86,7 +86,7 @@ const AdminDashboard: React.FC = () => (
 
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
       {/* Leads Chart */}
-      <div className="lg:col-span-2 bg-white rounded-xl border border-gray-100 shadow-card p-5">
+      <div className="lg:col-span-2 bg-surface rounded-xl border border-gray-100 shadow-card p-5">
         <div className="flex items-center justify-between mb-5">
           <h3 className="font-semibold text-primary">Leads & Sales Overview</h3>
           <select className="text-xs border border-gray-200 rounded-lg px-3 py-1.5 focus:outline-none">
@@ -98,26 +98,26 @@ const AdminDashboard: React.FC = () => (
           <AreaChart data={MONTHLY_LEADS}>
             <defs>
               <linearGradient id="leadsGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#0B1F3A" stopOpacity={0.15} />
-                <stop offset="95%" stopColor="#0B1F3A" stopOpacity={0} />
+                <stop offset="5%" stopColor="#14532D" stopOpacity={0.15} />
+                <stop offset="95%" stopColor="#14532D" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="salesGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#C8A96A" stopOpacity={0.3} />
-                <stop offset="95%" stopColor="#C8A96A" stopOpacity={0} />
+                <stop offset="5%" stopColor="#22C55E" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#22C55E" stopOpacity={0} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis dataKey="month" tick={{ fontSize: 12 }} />
             <YAxis tick={{ fontSize: 12 }} />
             <Tooltip />
-            <Area type="monotone" dataKey="leads" stroke="#0B1F3A" fill="url(#leadsGrad)" strokeWidth={2} name="Leads" />
-            <Area type="monotone" dataKey="sales" stroke="#C8A96A" fill="url(#salesGrad)" strokeWidth={2} name="Sales" />
+            <Area type="monotone" dataKey="leads" stroke="#14532D" fill="url(#leadsGrad)" strokeWidth={2} name="Leads" />
+            <Area type="monotone" dataKey="sales" stroke="#22C55E" fill="url(#salesGrad)" strokeWidth={2} name="Sales" />
           </AreaChart>
         </ResponsiveContainer>
       </div>
 
       {/* Property Types Pie */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-card p-5">
+      <div className="bg-surface rounded-xl border border-gray-100 shadow-card p-5">
         <h3 className="font-semibold text-primary mb-5">Property Types</h3>
         <ResponsiveContainer width="100%" height={180}>
           <PieChart>
@@ -144,7 +144,7 @@ const AdminDashboard: React.FC = () => (
     </div>
 
     {/* Recent Leads */}
-    <div className="bg-white rounded-xl border border-gray-100 shadow-card p-5">
+    <div className="bg-surface rounded-xl border border-gray-100 shadow-card p-5">
       <div className="flex items-center justify-between mb-5">
         <h3 className="font-semibold text-primary">Recent Leads</h3>
         <a href="/admin/leads" className="text-secondary text-sm hover:underline">View All</a>

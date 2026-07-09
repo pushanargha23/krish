@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiHeart, FiMaximize2, FiDroplet, FiMapPin, FiEye } from 'react-icons/fi';
+import { FiDownload, FiMaximize2, FiDroplet, FiMapPin, FiEye } from 'react-icons/fi';
 import type { Property } from '../../types';
 import { formatPrice, formatArea } from '../../utils';
-import { useWishlist } from '../../context/WishlistContext';
 import { cardHover, imageZoom } from '../../animations/variants';
 
 interface PropertyCardProps {
@@ -13,10 +12,30 @@ interface PropertyCardProps {
 }
 
 export const PropertyCard: React.FC<PropertyCardProps> = ({ property, variant = 'default' }) => {
-  const { toggle, isWishlisted } = useWishlist();
   const [imageLoaded, setImageLoaded] = useState(false);
-  const wishlisted = isWishlisted(property._id);
   const primaryImage = property.images.find(i => i.isPrimary) || property.images[0];
+
+  const handleDownload = (e: React.MouseEvent, url: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    fetch(url)
+      .then(res => res.blob())
+      .then(blob => {
+        const objectUrl = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = objectUrl;
+        link.download = `${property.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_image.jpg`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(objectUrl);
+      })
+      .catch(error => {
+        console.error('Error downloading image:', error);
+        // Fallback for CORS issues
+        window.open(url, '_blank');
+      });
+  };
 
   if (variant === 'horizontal') {
     return (
@@ -88,19 +107,18 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property, variant = 
         <div className="absolute top-3 right-3 flex flex-col gap-2">
           <motion.button
             whileTap={{ scale: 0.9 }}
-            onClick={(e) => { e.preventDefault(); toggle(property._id); }}
-            className={`w-8 h-8 rounded-lg flex items-center justify-center backdrop-blur-sm transition-all ${
-              wishlisted ? 'bg-red-500 text-white' : 'bg-white/80 text-textPrimary hover:bg-red-50 hover:text-red-500'
-            }`}
+            onClick={(e) => handleDownload(e, primaryImage?.url || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600')}
+            className="w-8 h-8 rounded-lg flex items-center justify-center backdrop-blur-sm transition-all bg-white/80 text-textPrimary hover:bg-primary hover:text-white"
+            title="Download Photo"
           >
-            <FiHeart size={14} style={{ fill: wishlisted ? 'white' : 'none' }} />
+            <FiDownload size={14} />
           </motion.button>
         </div>
 
         {/* Quick View */}
         <Link
           to={`/properties/${property.slug}`}
-          className="absolute bottom-3 left-1/2 -translate-x-1/2 px-5 py-2 bg-white text-primary text-xs font-semibold rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 whitespace-nowrap flex items-center gap-1.5"
+          className="absolute bottom-3 left-1/2 -translate-x-1/2 px-5 py-2 bg-surface text-primary text-xs font-semibold rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 whitespace-nowrap flex items-center gap-1.5"
         >
           <FiEye size={13} /> Quick View
         </Link>

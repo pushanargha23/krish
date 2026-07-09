@@ -40,7 +40,7 @@ export const WhyChooseUs: React.FC = () => {
               key={item.title}
               variants={staggerItem}
               whileHover={{ y: -6 }}
-              className="group p-8 bg-white rounded-xl border border-gray-100 shadow-card hover:shadow-luxury hover:border-secondary/30 transition-all duration-400 cursor-default"
+              className="group p-8 bg-surface rounded-xl border border-gray-100 shadow-card hover:shadow-luxury hover:border-secondary/30 transition-all duration-400 cursor-default"
             >
               <div className="w-14 h-14 bg-primary/5 group-hover:bg-gradient-gold rounded-xl flex items-center justify-center text-primary group-hover:text-primary transition-all duration-300 mb-5">
                 {ICONS[item.icon]}

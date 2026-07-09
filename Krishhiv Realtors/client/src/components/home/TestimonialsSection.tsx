@@ -9,12 +9,12 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 const TESTIMONIALS = [
   {
     _id: '1',
-    name: 'Rahul Singhania',
-    designation: 'CEO, TechVentures India',
+    name: 'Akash Mondal',
+    designation: 'CEO, Krisshiv Realtors',
     avatar: 'https://i.pravatar.cc/80?img=11',
     rating: 5,
     review: 'Krishhiv Realtors made our dream home a reality. Their team\'s expertise and dedication throughout the entire process was exceptional. We found our perfect 4BHK in Lodha Altamount within weeks.',
-    propertyBought: 'Lodha Altamount, Mumbai',
+    propertyBought: 'Newtown, kolkata',
     isVerified: true,
   },
   {

@@ -14,7 +14,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({ className = '', count = 1 })
 );
 
 export const PropertyCardSkeleton: React.FC = () => (
-  <div className="bg-white rounded-xl overflow-hidden shadow-card">
+  <div className="bg-surface rounded-xl overflow-hidden shadow-card">
     <Skeleton className="h-56 w-full rounded-none" />
     <div className="p-5 space-y-3">
       <Skeleton className="h-4 w-3/4" />
@@ -30,7 +30,7 @@ export const PropertyCardSkeleton: React.FC = () => (
 );
 
 export const BlogCardSkeleton: React.FC = () => (
-  <div className="bg-white rounded-xl overflow-hidden shadow-card">
+  <div className="bg-surface rounded-xl overflow-hidden shadow-card">
     <Skeleton className="h-48 w-full rounded-none" />
     <div className="p-5 space-y-3">
       <Skeleton className="h-3 w-1/4" />

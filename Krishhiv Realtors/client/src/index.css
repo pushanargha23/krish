@@ -8,13 +8,18 @@
   *, *::before, *::after { box-sizing: border-box; }
 
   html {
+    @apply bg-background;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  #root {
+    @apply min-h-screen bg-background;
+  }
+
   body {
-    @apply font-body text-textPrimary bg-background;
+    @apply min-h-screen font-body text-textPrimary bg-background;
     overflow-x: hidden;
   }
 
@@ -42,17 +47,17 @@
   }
 
   .glass-dark {
-    background: rgba(11, 31, 58, 0.7);
+    background: rgba(20, 83, 45, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(200, 169, 106, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.2);
   }
 
   .glass-light {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(11, 31, 58, 0.08);
+    border: 1px solid rgba(20, 83, 45, 0.08);
   }
 
   /* Buttons */
@@ -82,7 +87,7 @@
 
   /* Property Card */
   .property-card {
-    @apply bg-white rounded-xl overflow-hidden shadow-card transition-all duration-500
+    @apply bg-surface rounded-xl overflow-hidden shadow-card transition-all duration-500
            hover:shadow-luxury hover:-translate-y-2;
   }
 
@@ -106,7 +111,7 @@
 
   /* Input */
   .input-luxury {
-    @apply w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-textPrimary
+    @apply w-full px-4 py-3 bg-surface border border-gray-200 rounded-xl text-textPrimary
            placeholder:text-textMuted focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20
            transition-all duration-200;
   }
@@ -127,14 +132,14 @@
 
 @layer utilities {
   .text-gradient-gold {
-    background: linear-gradient(135deg, #C8A96A, #D4AF37);
+    background: linear-gradient(135deg, #22C55E, #A3E635);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-primary {
-    background: linear-gradient(135deg, #0B1F3A, #1a3a6b);
+    background: linear-gradient(135deg, #14532D, #15803D);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -154,8 +159,8 @@
 }
 
 .dark .glass-light {
-  background: rgba(11, 31, 58, 0.8);
-  border-color: rgba(200, 169, 106, 0.15);
+  background: rgba(20, 83, 45, 0.8);
+  border-color: rgba(34, 197, 94, 0.15);
 }
 
 /* Page Transition */

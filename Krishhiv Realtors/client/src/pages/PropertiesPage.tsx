@@ -209,7 +209,7 @@ const PropertiesPage: React.FC = () => {
         <div className="flex gap-8">
           {/* Sidebar Filters — Desktop */}
           <aside className="hidden lg:block w-72 flex-shrink-0">
-            <div className="sticky top-24 bg-white rounded-xl border border-gray-100 shadow-card p-6">
+            <div className="sticky top-24 bg-surface rounded-xl border border-gray-100 shadow-card p-6">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="font-semibold text-primary flex items-center gap-2">
                   <FiSliders size={16} /> Filters
@@ -229,7 +229,7 @@ const PropertiesPage: React.FC = () => {
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setMobileFilterOpen(true)}
-                  className="lg:hidden flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm font-medium hover:border-secondary transition-all"
+                  className="lg:hidden flex items-center gap-2 px-4 py-2.5 bg-surface border border-gray-200 rounded-xl text-sm font-medium hover:border-secondary transition-all"
                 >
                   <FiFilter size={15} /> Filters
                 </button>
@@ -239,20 +239,20 @@ const PropertiesPage: React.FC = () => {
                 <select
                   value={filters.sortBy}
                   onChange={e => updateFilters({ sortBy: e.target.value as PropertyFilters['sortBy'] })}
-                  className="px-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-secondary"
+                  className="px-4 py-2.5 bg-surface border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-secondary"
                 >
                   {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
                 </select>
                 <div className="flex border border-gray-200 rounded-xl overflow-hidden">
                   <button
                     onClick={() => setViewMode('grid')}
-                    className={`p-2.5 transition-colors ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-white text-textMuted hover:bg-gray-50'}`}
+                    className={`p-2.5 transition-colors ${viewMode === 'grid' ? 'bg-primary text-white' : 'bg-surface text-textMuted hover:bg-background'}`}
                   >
                     <FiGrid size={16} />
                   </button>
                   <button
                     onClick={() => setViewMode('list')}
-                    className={`p-2.5 transition-colors ${viewMode === 'list' ? 'bg-primary text-white' : 'bg-white text-textMuted hover:bg-gray-50'}`}
+                    className={`p-2.5 transition-colors ${viewMode === 'list' ? 'bg-primary text-white' : 'bg-surface text-textMuted hover:bg-background'}`}
                   >
                     <FiList size={16} />
                   </button>
@@ -294,7 +294,7 @@ const PropertiesPage: React.FC = () => {
                     className={`w-10 h-10 rounded-xl text-sm font-medium transition-all ${
                       filters.page === page
                         ? 'bg-primary text-white'
-                        : 'bg-white border border-gray-200 text-textMuted hover:border-secondary hover:text-secondary'
+                        : 'bg-surface border border-gray-200 text-textMuted hover:border-secondary hover:text-secondary'
                     }`}
                   >
                     {page}
@@ -310,7 +310,7 @@ const PropertiesPage: React.FC = () => {
       {mobileFilterOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-black/50" onClick={() => setMobileFilterOpen(false)} />
-          <div className="absolute right-0 top-0 bottom-0 w-80 bg-white overflow-y-auto p-6">
+          <div className="absolute right-0 top-0 bottom-0 w-80 bg-surface overflow-y-auto p-6">
             <div className="flex items-center justify-between mb-6">
               <h3 className="font-semibold text-primary">Filters</h3>
               <button onClick={() => setMobileFilterOpen(false)}><FiX size={20} /></button>

@@ -25,7 +25,7 @@ const EMICalculator: React.FC<{ price: number }> = ({ price }) => {
   const result = calculateEMI(principal, rate, tenure);
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 shadow-card p-6">
+    <div className="bg-surface rounded-xl border border-gray-100 shadow-card p-6">
       <h3 className="font-heading font-semibold text-primary text-lg mb-5">EMI Calculator</h3>
       <div className="space-y-4">
         <div>
@@ -62,11 +62,11 @@ const EMICalculator: React.FC<{ price: number }> = ({ price }) => {
           <div className="font-heading font-bold text-primary text-3xl">{formatPrice(result.emi)}</div>
         </div>
         <div className="grid grid-cols-2 gap-3 mt-4 text-xs">
-          <div className="text-center p-2 bg-white rounded-lg">
+          <div className="text-center p-2 bg-surface rounded-lg">
             <div className="text-textMuted">Principal</div>
             <div className="font-semibold text-primary">{formatPrice(result.principal)}</div>
           </div>
-          <div className="text-center p-2 bg-white rounded-lg">
+          <div className="text-center p-2 bg-surface rounded-lg">
             <div className="text-textMuted">Total Interest</div>
             <div className="font-semibold text-secondary">{formatPrice(result.totalInterest)}</div>
           </div>
@@ -98,7 +98,7 @@ const ScheduleVisit: React.FC<{ propertyId: string }> = ({ propertyId }) => {
   }
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 shadow-card p-6">
+    <div className="bg-surface rounded-xl border border-gray-100 shadow-card p-6">
       <h3 className="font-heading font-semibold text-primary text-lg mb-5 flex items-center gap-2">
         <FiCalendar size={18} className="text-secondary" /> Schedule a Visit
       </h3>
@@ -227,10 +227,10 @@ Each residence is a masterpiece of design, featuring Italian marble flooring, Ga
                   className="w-full h-full object-cover"
                 />
                 {/* Nav Arrows */}
-                <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-md">
+                <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-surface/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-surface transition-all shadow-md">
                   <FiChevronLeft size={18} />
                 </button>
-                <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all shadow-md">
+                <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-surface/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-surface transition-all shadow-md">
                   <FiChevronRight size={18} />
                 </button>
                 {/* Counter */}
@@ -239,7 +239,7 @@ Each residence is a masterpiece of design, featuring Italian marble flooring, Ga
                 </div>
               </div>
               {/* Thumbnails */}
-              <div className="flex gap-2 p-3 bg-white overflow-x-auto no-scrollbar">
+              <div className="flex gap-2 p-3 bg-surface overflow-x-auto no-scrollbar">
                 {property.images.map((img, i) => (
                   <button
                     key={i}
@@ -260,7 +260,7 @@ Each residence is a masterpiece of design, featuring Italian marble flooring, Ga
                     <span className="badge-gold capitalize">{property.type}</span>
                     <span className="badge-primary">{property.status.replace('_', ' ')}</span>
                     {property.isVerified && <span className="badge bg-green-100 text-green-700 border border-green-200">✓ Verified</span>}
-                    {property.rera && <span className="badge bg-blue-50 text-blue-700 border border-blue-200 text-[10px]">RERA: {property.rera}</span>}
+                    {property.rera && <span className="badge bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px]">RERA: {property.rera}</span>}
                   </div>
                   <h1 className="font-heading text-3xl md:text-4xl font-bold text-primary leading-tight">{property.title}</h1>
                   <p className="text-textMuted flex items-center gap-1.5 mt-2">
@@ -294,7 +294,7 @@ Each residence is a masterpiece of design, featuring Italian marble flooring, Ga
             </div>
 
             {/* Overview */}
-            <div className="bg-white rounded-xl border border-gray-100 shadow-card p-6">
+            <div className="bg-surface rounded-xl border border-gray-100 shadow-card p-6">
               <h2 className="font-heading font-semibold text-primary text-xl mb-5">Property Overview</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
@@ -319,14 +319,14 @@ Each residence is a masterpiece of design, featuring Italian marble flooring, Ga
             </div>
 
             {/* Description */}
-            <div className="bg-white rounded-xl border border-gray-100 shadow-card p-6">
+            <div className="bg-surface rounded-xl border border-gray-100 shadow-card p-6">
               <h2 className="font-heading font-semibold text-primary text-xl mb-4">About This Property</h2>
               <div className="text-textMuted text-sm leading-relaxed whitespace-pre-line">{property.description}</div>
             </div>
 
             {/* Highlights */}
             {property.highlights.length > 0 && (
-              <div className="bg-white rounded-xl border border-gray-100 shadow-card p-6">
+              <div className="bg-surface rounded-xl border border-gray-100 shadow-card p-6">
                 <h2 className="font-heading font-semibold text-primary text-xl mb-4">Key Highlights</h2>
                 <div className="flex flex-wrap gap-3">
                   {property.highlights.map(h => (
@@ -339,7 +339,7 @@ Each residence is a masterpiece of design, featuring Italian marble flooring, Ga
             )}
 
             {/* Amenities */}
-            <div className="bg-white rounded-xl border border-gray-100 shadow-card p-6">
+            <div className="bg-surface rounded-xl border border-gray-100 shadow-card p-6">
               <h2 className="font-heading font-semibold text-primary text-xl mb-5">Amenities</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {property.amenities.map(amenity => (

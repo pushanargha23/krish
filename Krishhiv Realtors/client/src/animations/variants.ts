@@ -48,9 +48,9 @@ export const imageZoom: Variants = {
 };
 
 export const navbarVariants: Variants = {
-  top: { backgroundColor: 'rgba(11, 31, 58, 0)', backdropFilter: 'blur(0px)', boxShadow: 'none' },
+  top: { backgroundColor: 'rgba(20, 83, 45, 0)', backdropFilter: 'blur(0px)', boxShadow: 'none' },
   scrolled: {
-    backgroundColor: 'rgba(11, 31, 58, 0.95)',
+    backgroundColor: 'rgba(20, 83, 45, 0.95)',
     backdropFilter: 'blur(20px)',
     boxShadow: '0 4px 30px rgba(0,0,0,0.2)',
   },

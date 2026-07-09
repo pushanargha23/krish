@@ -39,7 +39,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, 
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
             exit={{ opacity: 0, scale: 0.95, y: 20, transition: { duration: 0.2 } }}
-            className={`relative w-full ${sizeMap[size]} bg-white rounded-2xl shadow-luxury overflow-hidden z-10`}
+            className={`relative w-full ${sizeMap[size]} bg-surface rounded-2xl shadow-luxury overflow-hidden z-10`}
           >
             {title && (
               <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">

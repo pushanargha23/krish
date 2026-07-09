@@ -71,7 +71,7 @@ const AboutPage: React.FC = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="p-8 bg-white rounded-2xl border border-gray-100 shadow-card relative overflow-hidden"
+              className="p-8 bg-surface rounded-2xl border border-gray-100 shadow-card relative overflow-hidden"
             >
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-secondary/5 rounded-full blur-2xl" />
               <div className="text-secondary text-4xl mb-4 font-heading italic">Vision</div>
@@ -133,7 +133,7 @@ const AboutPage: React.FC = () => {
                 key={member.name}
                 variants={staggerItem}
                 whileHover={{ y: -6 }}
-                className="group bg-white rounded-xl overflow-hidden shadow-card hover:shadow-luxury transition-all duration-400 text-center"
+                className="group bg-surface rounded-xl overflow-hidden shadow-card hover:shadow-luxury transition-all duration-400 text-center"
               >
                 <div className="relative overflow-hidden h-56">
                   <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />

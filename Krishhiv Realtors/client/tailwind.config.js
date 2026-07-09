@@ -5,17 +5,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#0B1F3A',
-        secondary: '#C8A96A',
-        accent: '#D4AF37',
-        background: '#FAFAFA',
+        primary: '#14532D',
+        secondary: '#22C55E',
+        accent: '#A3E635',
+        background: '#EFFAF1',
         surface: '#FFFFFF',
-        textPrimary: '#1E1E1E',
-        textMuted: '#6B7280',
+        textPrimary: '#10231B',
+        textMuted: '#5F7168',
         gold: {
-          light: '#E8D5A3',
-          DEFAULT: '#C8A96A',
-          dark: '#A07840',
+          light: '#BBF7D0',
+          DEFAULT: '#22C55E',
+          dark: '#15803D',
         },
       },
       fontFamily: {
@@ -28,15 +28,15 @@ export default {
         '3xl': '32px',
       },
       boxShadow: {
-        glass: '0 8px 32px rgba(11, 31, 58, 0.12)',
-        luxury: '0 20px 60px rgba(11, 31, 58, 0.15)',
-        card: '0 4px 24px rgba(11, 31, 58, 0.08)',
-        gold: '0 4px 20px rgba(200, 169, 106, 0.3)',
+        glass: '0 8px 32px rgba(20, 83, 45, 0.12)',
+        luxury: '0 20px 60px rgba(20, 83, 45, 0.15)',
+        card: '0 4px 24px rgba(20, 83, 45, 0.08)',
+        gold: '0 4px 20px rgba(34, 197, 94, 0.3)',
       },
       backgroundImage: {
-        'gradient-luxury': 'linear-gradient(135deg, #0B1F3A 0%, #1a3a6b 100%)',
-        'gradient-gold': 'linear-gradient(135deg, #C8A96A 0%, #D4AF37 100%)',
-        'gradient-hero': 'linear-gradient(to bottom, rgba(11,31,58,0.6) 0%, rgba(11,31,58,0.3) 50%, rgba(11,31,58,0.8) 100%)',
+        'gradient-luxury': 'linear-gradient(135deg, #14532D 0%, #15803D 52%, #166534 100%)',
+        'gradient-gold': 'linear-gradient(135deg, #22C55E 0%, #A3E635 100%)',
+        'gradient-hero': 'linear-gradient(to bottom, rgba(20,83,45,0.72) 0%, rgba(21,128,61,0.42) 50%, rgba(20,83,45,0.88) 100%)',
       },
       animation: {
         'fade-up': 'fadeUp 0.6s ease forwards',

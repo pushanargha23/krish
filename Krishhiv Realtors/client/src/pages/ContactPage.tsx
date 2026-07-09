@@ -157,7 +157,7 @@ const ContactPage: React.FC = () => {
               {/* Offices */}
               <div className="space-y-3">
                 {OFFICES.map(office => (
-                  <div key={office.city} className="bg-white rounded-xl border border-gray-100 shadow-card p-5">
+                  <div key={office.city} className="bg-surface rounded-xl border border-gray-100 shadow-card p-5">
                     <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
                       <FiMapPin size={14} className="text-secondary" /> {office.city}
                     </h4>

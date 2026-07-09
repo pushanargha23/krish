@@ -16,7 +16,7 @@ export const Rating: React.FC<RatingProps> = ({ value, max = 5, size = 16, class
         key={i}
         size={size}
         className={i < Math.round(value) ? 'text-accent fill-accent' : 'text-gray-300'}
-        style={{ fill: i < Math.round(value) ? '#D4AF37' : 'none' }}
+        style={{ fill: i < Math.round(value) ? '#A3E635' : 'none' }}
       />
     ))}
   </div>

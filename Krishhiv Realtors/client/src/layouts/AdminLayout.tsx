@@ -31,7 +31,7 @@ export const AdminLayout: React.FC = () => {
   const handleLogout = () => { logout(); navigate('/'); };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-background text-textPrimary flex">
       {/* Sidebar */}
       <AnimatePresence>
         {sidebarOpen && (
@@ -101,7 +101,7 @@ export const AdminLayout: React.FC = () => {
       {/* Main */}
       <div className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'}`}>
         {/* Top Bar */}
-        <header className="sticky top-0 z-20 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <header className="sticky top-0 z-20 bg-surface border-b border-gray-200 px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSidebarOpen(v => !v)}
@@ -113,7 +113,7 @@ export const AdminLayout: React.FC = () => {
               <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={15} />
               <input
                 placeholder="Search..."
-                className="pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-secondary w-64"
+                className="pl-9 pr-4 py-2 bg-background border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-secondary w-64"
               />
             </div>
           </div>
@@ -129,7 +129,7 @@ export const AdminLayout: React.FC = () => {
         </header>
 
         {/* Content */}
-        <main className="p-6">
+        <main className="p-6 bg-background">
           <Outlet />
         </main>
       </div>

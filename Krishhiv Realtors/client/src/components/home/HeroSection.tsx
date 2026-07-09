@@ -49,7 +49,7 @@ export const HeroSection: React.FC = () => {
         <div
           className="absolute inset-0 opacity-5"
           style={{
-            backgroundImage: 'linear-gradient(rgba(200,169,106,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(200,169,106,0.3) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(rgba(34,197,94,0.28) 1px, transparent 1px), linear-gradient(90deg, rgba(34,197,94,0.28) 1px, transparent 1px)',
             backgroundSize: '60px 60px',
           }}
         />

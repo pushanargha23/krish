@@ -73,7 +73,7 @@ export const BlogSection: React.FC = () => {
               key={blog._id}
               variants={staggerItem}
               whileHover={{ y: -6 }}
-              className="group bg-white rounded-xl overflow-hidden shadow-card hover:shadow-luxury transition-all duration-400"
+              className="group bg-surface rounded-xl overflow-hidden shadow-card hover:shadow-luxury transition-all duration-400"
             >
               <Link to={`/blog/${blog.slug}`} className="block overflow-hidden h-48">
                 <img

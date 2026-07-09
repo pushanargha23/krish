@@ -57,7 +57,7 @@ export const FAQSection: React.FC = () => {
             <motion.div
               key={i}
               variants={staggerItem}
-              className="bg-white rounded-xl border border-gray-100 overflow-hidden shadow-card"
+              className="bg-surface rounded-xl border border-gray-100 overflow-hidden shadow-card"
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}

@@ -10,13 +10,13 @@ export const MainLayout: React.FC = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background text-textPrimary flex flex-col">
       <Navbar />
       <AnimatePresence mode="wait">
         <motion.main
           key={pathname}
           {...pageTransition}
-          className="flex-1"
+          className="flex-1 bg-background"
         >
           <Outlet />
         </motion.main>
