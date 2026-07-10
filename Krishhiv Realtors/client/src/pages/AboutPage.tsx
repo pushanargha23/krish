@@ -4,21 +4,16 @@ import { motion } from 'framer-motion';
 import { useInView } from '../hooks';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { staggerContainer, staggerItem, fadeLeft, fadeRight } from '../animations/variants';
+import { FiMail, FiLinkedin } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const TIMELINE = [
-  { year: '2009', title: 'Founded', desc: 'Krishhiv Realtors established in Mumbai with a vision to redefine luxury real estate.' },
+  { year: '2009', title: 'Founded', desc: 'Krisshiv Realtors established in Mumbai with a vision to redefine luxury real estate.' },
   { year: '2012', title: 'Pan-India Expansion', desc: 'Expanded to Bangalore, Delhi, and Hyderabad with dedicated city offices.' },
   { year: '2015', title: '500 Properties Sold', desc: 'Crossed the milestone of 500 successful property transactions.' },
   { year: '2018', title: 'Digital Transformation', desc: 'Launched India\'s first AI-powered luxury property recommendation platform.' },
   { year: '2021', title: 'NRI Desk Launch', desc: 'Dedicated NRI investment desk serving clients across 30+ countries.' },
   { year: '2024', title: '2000+ Happy Families', desc: 'Celebrated 2000+ successful property handovers across India.' },
-];
-
-const TEAM = [
-  { name: 'Krishhiv Sharma', role: 'Founder & CEO', image: 'https://i.pravatar.cc/200?img=12', exp: '20+ Years' },
-  { name: 'Priya Mehta', role: 'Head of Luxury Sales', image: 'https://i.pravatar.cc/200?img=5', exp: '15+ Years' },
-  { name: 'Arjun Nair', role: 'Chief Investment Advisor', image: 'https://i.pravatar.cc/200?img=11', exp: '12+ Years' },
-  { name: 'Deepa Krishnan', role: 'NRI Relations Head', image: 'https://i.pravatar.cc/200?img=9', exp: '10+ Years' },
 ];
 
 const AboutPage: React.FC = () => {
@@ -28,8 +23,8 @@ const AboutPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>About Us — Krishhiv Realtors</title>
-        <meta name="description" content="Learn about Krishhiv Realtors — India's premier luxury real estate consultancy with 15+ years of excellence." />
+        <title>About Us — Krisshiv Realtors</title>
+        <meta name="description" content="Learn about Krisshiv Realtors — India's premier luxury real estate consultancy with 15+ years of excellence." />
       </Helmet>
 
       {/* Hero */}
@@ -117,35 +112,67 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Team */}
-      <section className="section-padding bg-background">
-        <div className="container-custom">
-          <SectionHeader tag="Our People" title="Meet the" titleHighlight="Leadership Team" />
+      {/* Leadership */}
+      <section className="section-padding bg-background relative overflow-hidden">
+        {/* Subtle decorative elements for the background */}
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-secondary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-secondary/10 rounded-full blur-3xl" />
+        
+        <div className="container-custom flex justify-center relative z-10">
           <motion.div
             ref={teamRef}
-            variants={staggerContainer}
-            initial="hidden"
-            animate={teamInView ? 'visible' : 'hidden'}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            initial={{ opacity: 0, y: 30 }}
+            animate={teamInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6 }}
+            className="relative w-full max-w-2xl p-10 md:p-16 rounded-[2rem] overflow-hidden bg-surface shadow-luxury border border-white/5"
           >
-            {TEAM.map(member => (
-              <motion.div
-                key={member.name}
-                variants={staggerItem}
-                whileHover={{ y: -6 }}
-                className="group bg-surface rounded-xl overflow-hidden shadow-card hover:shadow-luxury transition-all duration-400 text-center"
-              >
-                <div className="relative overflow-hidden h-56">
-                  <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            {/* Background "CEO" text */}
+            <div className="absolute top-8 right-8 text-[7rem] md:text-[9rem] font-black tracking-tighter text-primary/5 select-none pointer-events-none leading-none">
+              CEO
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 flex flex-col items-center text-center mt-4">
+              {/* Image with concentric borders */}
+              <div className="relative mb-8 flex items-center justify-center">
+                {/* Rotating dashed ring */}
+                <div className="absolute inset-[-20px] border-[1.5px] border-dashed border-secondary/40 rounded-[30px] animate-[spin_30s_linear_infinite]" />
+                
+                {/* Inner image container */}
+                <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-3xl overflow-hidden border-2 border-secondary p-1.5 bg-surface">
+                  <img 
+                    src="/Akash-Mondal-scaled.jpg" 
+                    alt="Akash Mondal" 
+                    className="w-full h-full object-cover rounded-2xl bg-primary/10"
+                  />
                 </div>
-                <div className="p-5">
-                  <h3 className="font-heading font-semibold text-primary text-lg">{member.name}</h3>
-                  <p className="text-secondary text-sm mt-1">{member.role}</p>
-                  <p className="text-textMuted text-xs mt-1">{member.exp} Experience</p>
-                </div>
-              </motion.div>
-            ))}
+              </div>
+
+              <h2 className="text-3xl md:text-5xl font-bold mb-5 tracking-tight text-primary">
+                Akash Mondal
+              </h2>
+              
+              <div className="px-6 py-2 rounded-full font-bold text-sm tracking-wider mb-10 bg-gradient-gold text-primary shadow-lg">
+                CEO
+              </div>
+
+              <p className="max-w-md mx-auto text-[15px] md:text-base leading-relaxed mb-12 text-textMuted">
+                Leading the vision, strategy, and growth of the company while empowering businesses through innovation and artificial intelligence.
+              </p>
+
+              {/* Social Links */}
+              <div className="flex items-center gap-5">
+                <a href="mailto:akash@krisshivrealtors.com" className="w-14 h-14 rounded-2xl border border-secondary/30 flex items-center justify-center hover:bg-secondary/10 transition-colors text-secondary hover:shadow-[0_0_15px_rgba(var(--secondary),0.3)]">
+                  <FiMail size={22} />
+                </a>
+                <a href="https://www.linkedin.com/in/akash-mondal-4984382aa/" target="_blank" rel="noreferrer" className="w-14 h-14 rounded-2xl border border-secondary/30 flex items-center justify-center hover:bg-secondary/10 transition-colors text-secondary hover:shadow-[0_0_15px_rgba(var(--secondary),0.3)]">
+                  <FiLinkedin size={22} />
+                </a>
+                <a href="https://wa.me/917003215308" target="_blank" rel="noreferrer" className="w-14 h-14 rounded-2xl border border-secondary/30 flex items-center justify-center hover:bg-secondary/10 transition-colors text-secondary hover:shadow-[0_0_15px_rgba(var(--secondary),0.3)]">
+                  <FaWhatsapp size={24} />
+                </a>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>

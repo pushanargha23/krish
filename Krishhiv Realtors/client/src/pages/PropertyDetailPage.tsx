@@ -190,7 +190,7 @@ Each residence is a masterpiece of design, featuring Italian marble flooring, Ga
   return (
     <>
       <Helmet>
-        <title>{property.title} — Krishhiv Realtors</title>
+        <title>{property.title} — Krisshiv Realtors</title>
         <meta name="description" content={property.description.slice(0, 160)} />
         <meta property="og:title" content={property.title} />
         <meta property="og:image" content={property.images[0]?.url} />

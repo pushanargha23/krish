@@ -19,7 +19,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('krishhiv_user');
+    const storedUser = localStorage.getItem('krisshiv_user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         role: 'user',
       };
       setUser(mockUser);
-      localStorage.setItem('krishhiv_user', JSON.stringify(mockUser));
+      localStorage.setItem('krisshiv_user', JSON.stringify(mockUser));
     } else {
       throw new Error('Invalid credentials');
     }
@@ -52,7 +52,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         role: 'user',
       };
       setUser(mockUser);
-      localStorage.setItem('krishhiv_user', JSON.stringify(mockUser));
+      localStorage.setItem('krisshiv_user', JSON.stringify(mockUser));
     } else {
       throw new Error('Invalid registration data');
     }
@@ -60,7 +60,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = useCallback(async () => {
     setUser(null);
-    localStorage.removeItem('krishhiv_user');
+    localStorage.removeItem('krisshiv_user');
   }, []);
 
   const forgotPassword = useCallback(async (email: string) => {

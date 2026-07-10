@@ -6,7 +6,7 @@ import { fadeUp } from '../animations/variants';
 
 const NotFoundPage: React.FC = () => (
   <>
-    <Helmet><title>404 — Page Not Found | Krishhiv Realtors</title></Helmet>
+    <Helmet><title>404 — Page Not Found | Krisshiv Realtors</title></Helmet>
     <div className="min-h-screen bg-primary flex items-center justify-center relative overflow-hidden">
       <div className="absolute inset-0 bg-noise opacity-20" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />

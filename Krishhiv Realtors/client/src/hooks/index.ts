@@ -105,6 +105,6 @@ export const useBodyLock = (locked: boolean) => {
 /** Page title */
 export const usePageTitle = (title: string) => {
   useEffect(() => {
-    document.title = `${title} | Krishhiv Realtors`;
+    document.title = `${title} | Krisshiv Realtors`;
   }, [title]);
 };

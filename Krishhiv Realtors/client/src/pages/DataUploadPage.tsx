@@ -56,7 +56,7 @@ const DataUploadPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Upload Property Data | Krishhiv Realtors</title>
+        <title>Upload Property Data | Krisshiv Realtors</title>
       </Helmet>
       
       <div className="min-h-screen bg-background pt-24 pb-12">

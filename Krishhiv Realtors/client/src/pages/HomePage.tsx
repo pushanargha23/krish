@@ -26,7 +26,7 @@ const HomePage: React.FC = () => (
         '@type': 'RealEstateAgent',
         name: APP_NAME,
         description: APP_DESCRIPTION,
-        url: 'https://krishhivrealtors.com',
+        url: 'https://krisshivrealtors.com',
         telephone: '+91-98765-43210',
         address: {
           '@type': 'PostalAddress',

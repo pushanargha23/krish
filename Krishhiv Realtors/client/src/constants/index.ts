@@ -1,19 +1,19 @@
 import type { PropertyType } from '../types';
 
-export const APP_NAME = 'Krishhiv Realtors';
+export const APP_NAME = 'Krisshiv Realtors';
 export const APP_TAGLINE = 'Where Luxury Meets Legacy';
 export const APP_DESCRIPTION = 'Premium real estate consultancy offering exclusive residential and commercial properties across India\'s most coveted locations.';
-export const APP_PHONE = '+91 98765 43210';
-export const APP_EMAIL = 'info@krishhivrealtors.com';
+export const APP_PHONE = '+91 70032 15308';
+export const APP_EMAIL = 'info@krisshivrealtors.com';
 export const APP_ADDRESS = '12th Floor, One BKC, Bandra Kurla Complex, Mumbai - 400051';
-export const APP_WHATSAPP = '919876543210';
+export const APP_WHATSAPP = '917003215308';
 
 export const SOCIAL_LINKS = {
-  instagram: 'https://instagram.com/krishhivrealtors',
-  facebook: 'https://facebook.com/krishhivrealtors',
-  linkedin: 'https://linkedin.com/company/krishhivrealtors',
-  youtube: 'https://youtube.com/@krishhivrealtors',
-  twitter: 'https://twitter.com/krishhivrealtors',
+  instagram: 'https://instagram.com/krisshivrealtors',
+  facebook: 'https://facebook.com/krisshivrealtors',
+  linkedin: 'https://linkedin.com/company/krisshivrealtors',
+  youtube: 'https://youtube.com/@krisshivrealtors',
+  twitter: 'https://twitter.com/krisshivrealtors',
 };
 
 export const PROPERTY_TYPES: { value: PropertyType; label: string; icon: string }[] = [

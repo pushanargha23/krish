@@ -58,7 +58,7 @@ const StatCard: React.FC<{ icon: React.ReactNode; label: string; value: string; 
 
 const AdminDashboard: React.FC = () => (
   <>
-    <Helmet><title>Dashboard — Admin | Krishhiv Realtors</title></Helmet>
+    <Helmet><title>Dashboard — Admin | Krisshiv Realtors</title></Helmet>
 
     <div className="mb-6">
       <h1 className="font-heading text-2xl font-bold text-primary">Dashboard</h1>

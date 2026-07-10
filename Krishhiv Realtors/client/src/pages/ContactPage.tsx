@@ -34,8 +34,8 @@ const ContactPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Contact Us — Krishhiv Realtors</title>
-        <meta name="description" content="Get in touch with Krishhiv Realtors. Our expert consultants are ready to help you find your perfect property." />
+        <title>Contact Us — Krisshiv Realtors</title>
+        <meta name="description" content="Get in touch with Krisshiv Realtors. Our expert consultants are ready to help you find your perfect property." />
       </Helmet>
 
       {/* Header */}

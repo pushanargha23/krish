@@ -213,10 +213,30 @@ export const careerService = {
 };
 
 export const contactService = {
-  send: async (_payload: { name: string; email: string; phone: string; subject: string; message: string }) => {
+  send: async (payload: { name: string; email: string; phone: string; subject: string; message: string }) => {
     try {
-      return { data: { success: true } };
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: payload.name,
+          email: payload.email,
+          phone: payload.phone,
+          subject: payload.subject,
+          message: payload.message,
+        })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.error || 'Failed to send message');
+      }
+      return await response.json();
     } catch (error) {
+      console.error("Error sending contact form:", error);
       throw error;
     }
   },

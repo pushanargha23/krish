@@ -187,7 +187,7 @@ const PropertiesPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Properties — Krishhiv Realtors</title>
+        <title>Properties — Krisshiv Realtors</title>
         <meta name="description" content="Browse premium residential and commercial properties across India's top cities." />
       </Helmet>
 

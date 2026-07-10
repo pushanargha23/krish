@@ -68,7 +68,7 @@ export const Navbar: React.FC = () => {
         <div className="container-custom flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <img src="/cropped-Krisshiv-Logo-512X512.png" alt="Krishhiv Realtors Logo" className="h-10 lg:h-14 w-auto object-contain bg-white rounded-xl shadow-md p-1 transition-transform duration-300 group-hover:scale-105" />
+            <img src="/cropped-Krisshiv-Logo-512X512.png" alt="Krisshiv Realtors Logo" className="h-10 lg:h-14 w-auto object-contain bg-white rounded-xl shadow-md p-1 transition-transform duration-300 group-hover:scale-105" />
           </Link>
 
           {/* Desktop Nav */}

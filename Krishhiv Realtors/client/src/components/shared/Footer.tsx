@@ -95,7 +95,7 @@ export const Footer: React.FC = () => {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-6 group">
-              <img src="/cropped-Krisshiv-Logo-512X512.png" alt="Krishhiv Realtors Logo" className="h-24 w-auto object-contain bg-white rounded-2xl shadow-md p-2 transition-transform duration-300 group-hover:scale-105" />
+              <img src="/cropped-Krisshiv-Logo-512X512.png" alt="Krisshiv Realtors Logo" className="h-24 w-auto object-contain bg-white rounded-2xl shadow-md p-2 transition-transform duration-300 group-hover:scale-105" />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
               India's most trusted luxury real estate consultancy. Connecting discerning buyers with exceptional properties since 2009.
