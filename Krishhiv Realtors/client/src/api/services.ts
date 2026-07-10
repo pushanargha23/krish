@@ -1,12 +1,12 @@
 import type { PropertyFilters } from '../types';
 import { getProperties } from '../utils/csvParser';
-import { 
-  mockBlogs, 
-  mockBuilders, 
-  mockTestimonials, 
-  mockFaqs, 
-  mockCareers, 
-  mockGallery 
+import {
+  mockBlogs,
+  mockBuilders,
+  mockTestimonials,
+  mockFaqs,
+  mockCareers,
+  mockGallery
 } from '../mockData';
 
 export const propertyService = {
@@ -14,7 +14,7 @@ export const propertyService = {
     try {
       const properties = await getProperties();
       let filtered = [...properties];
-      
+
       if (filters.type) filtered = filtered.filter(p => p.type === filters.type);
       if (filters.city) filtered = filtered.filter(p => p.location.city === filters.city);
       if (filters.minPrice && filters.maxPrice) {
@@ -63,7 +63,7 @@ export const propertyService = {
   search: async (query: string) => {
     try {
       const properties = await getProperties();
-      const results = properties.filter(prop => 
+      const results = properties.filter(prop =>
         prop.title?.toLowerCase().includes(query.toLowerCase()) ||
         prop.location.address?.toLowerCase().includes(query.toLowerCase())
       );
@@ -215,21 +215,19 @@ export const careerService = {
 export const contactService = {
   send: async (payload: { name: string; email: string; phone: string; subject: string; message: string }) => {
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const formData = new FormData();
+      formData.append('access_key', 'f3b6c457-c2d8-4f86-9316-07e40d9dc956');
+      formData.append('name', payload.name);
+      formData.append('email', payload.email);
+      formData.append('phone', payload.phone);
+      formData.append('subject', payload.subject || 'General Inquiry');
+      formData.append('message', payload.message);
+
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: payload.name,
-          email: payload.email,
-          phone: payload.phone,
-          subject: payload.subject,
-          message: payload.message,
-        })
+        body: formData
       });
-      
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => null);
         throw new Error(errorData?.error || 'Failed to send message');
