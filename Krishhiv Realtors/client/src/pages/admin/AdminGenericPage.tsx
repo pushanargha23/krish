@@ -66,6 +66,7 @@ const AdminGenericPage: React.FC<AdminGenericPageProps> = ({ title, fetchData, c
     setEditingRecord(row);
     setIsModalOpen(true);
   };
+  
 
   const handleDelete = async (row: any) => {
     if (!deleteData) return;
