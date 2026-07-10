@@ -29,12 +29,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = useCallback(async (email: string, password: string) => {
     // Mock login
     if (email && password) {
-      const mockUser: User = {
+      const mockUser = {
         _id: 'mock_user_123',
         name: 'Mock User',
         email,
         role: 'user',
-      };
+      } as User;
       setUser(mockUser);
       localStorage.setItem('krisshiv_user', JSON.stringify(mockUser));
     } else {
@@ -44,13 +44,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const register = useCallback(async (name: string, email: string, phone: string, password: string) => {
     if (email && password) {
-      const mockUser: User = {
+      const mockUser = {
         _id: 'mock_user_123',
         name,
         email,
         phone,
         role: 'user',
-      };
+      } as User;
       setUser(mockUser);
       localStorage.setItem('krisshiv_user', JSON.stringify(mockUser));
     } else {
@@ -68,7 +68,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const resetPassword = useCallback(async (oobCode: string, newPassword: string) => {
-    console.log('Password reset confirmed with code', oobCode);
+    console.log('Password reset confirmed with code', oobCode, newPassword);
   }, []);
 
   return (

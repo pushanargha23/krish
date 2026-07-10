@@ -8,7 +8,7 @@ import { propertyService } from '../api/services';
 import { PropertyCard } from '../components/property/PropertyCard';
 import { PropertyCardSkeleton } from '../components/ui/Skeleton';
 import type { PropertyFilters, PropertyType } from '../types';
-import { PROPERTY_TYPES, PRICE_RANGES, BEDROOM_OPTIONS, SORT_OPTIONS, CITIES, POSSESSION_OPTIONS, AMENITIES_LIST } from '../constants';
+import { PROPERTY_TYPES, PRICE_RANGES, BEDROOM_OPTIONS, SORT_OPTIONS, CITIES, POSSESSION_OPTIONS } from '../constants';
 import { useDebounce } from '../hooks';
 import { staggerContainer, staggerItem } from '../animations/variants';
 
@@ -152,7 +152,7 @@ const FilterPanel: React.FC<{
 );
 
 const PropertiesPage: React.FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
@@ -182,7 +182,7 @@ const PropertiesPage: React.FC = () => {
   });
 
   const properties = data?.data?.data || MOCK_PROPERTIES;
-  const total = data?.data?.pagination?.total || MOCK_PROPERTIES.length;
+  const total = (data?.data as any)?.pagination?.total || MOCK_PROPERTIES.length;
 
   return (
     <>

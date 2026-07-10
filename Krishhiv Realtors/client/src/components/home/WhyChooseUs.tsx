@@ -52,7 +52,7 @@ export const WhyChooseUs: React.FC = () => {
           animate={inView ? 'visible' : 'hidden'}
           className="flex flex-col md:flex-row items-stretch justify-center gap-6 mt-12"
         >
-          {CUSTOM_FEATURES.map((item, i) => (
+          {CUSTOM_FEATURES.map((item) => (
             <motion.div
               key={item.title}
               variants={staggerItem}

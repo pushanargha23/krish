@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { FiPhone, FiMail, FiMapPin, FiClock, FiCheck } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { contactService } from '../api/services';
-import { APP_PHONE, APP_EMAIL, APP_ADDRESS, APP_WHATSAPP } from '../constants';
+import { APP_PHONE, APP_EMAIL, APP_WHATSAPP } from '../constants';
 import { getWhatsAppLink } from '../utils';
 import { fadeLeft, fadeRight } from '../animations/variants';
 

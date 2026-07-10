@@ -14,7 +14,7 @@ import { propertyService, appointmentService } from '../api/services';
 import { useWishlist } from '../context/WishlistContext';
 import { formatPrice, formatArea, calculateEMI, getWhatsAppLink, shareProperty } from '../utils';
 import { APP_WHATSAPP } from '../constants';
-import { fadeUp, staggerContainer, staggerItem } from '../animations/variants';
+
 import FacilityIcon from '../components/property/FacilityIcon';
 
 // EMI Calculator Component
@@ -127,7 +127,7 @@ const PropertyDetailPage: React.FC = () => {
   const { toggle, isWishlisted } = useWishlist();
   const [activeImage, setActiveImage] = useState(0);
 
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ['property', slug],
     queryFn: () => propertyService.getBySlug(slug!),
     enabled: !!slug,

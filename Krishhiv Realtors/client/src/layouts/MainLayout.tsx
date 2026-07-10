@@ -15,7 +15,7 @@ export const MainLayout: React.FC = () => {
       <AnimatePresence mode="wait">
         <motion.main
           key={pathname}
-          {...pageTransition}
+          {...(pageTransition as any)}
           className="flex-1 bg-background"
         >
           <Outlet />

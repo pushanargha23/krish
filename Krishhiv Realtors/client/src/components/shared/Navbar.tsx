@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  FiSearch, FiHeart, FiUser, FiMenu, FiX, FiMoon, FiSun, FiPhone, FiChevronDown,
+  FiSearch, FiHeart, FiMenu, FiX, FiMoon, FiSun, FiChevronDown,
 } from 'react-icons/fi';
 import { useScrollPosition } from '../../hooks';
 import { useWishlist } from '../../context/WishlistContext';
 import { useTheme } from '../../context/ThemeContext';
-import { useAuth } from '../../context/AuthContext';
+
 import { navbarVariants, dropdownVariants } from '../../animations/variants';
-import { APP_NAME, APP_PHONE } from '../../constants';
+import { APP_NAME } from '../../constants';
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
   const scrollY = useScrollPosition();
   const { count } = useWishlist();
   const { isDark, toggle: toggleTheme } = useTheme();
-  const { isAuthenticated, user, logout } = useAuth();
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);

@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, BarChart, Bar, Legend,
+  PieChart, Pie, Cell,
 } from 'recharts';
-import { FiHome, FiUsers, FiMessageSquare, FiTrendingUp, FiEye, FiCalendar } from 'react-icons/fi';
+import { FiHome, FiUsers, FiMessageSquare, FiTrendingUp } from 'react-icons/fi';
 import { staggerContainer, staggerItem } from '../../animations/variants';
 
 const MONTHLY_LEADS = [

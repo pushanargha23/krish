@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import type { HTMLMotionProps } from 'framer-motion';
 import { cn } from '../../utils/cn';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<HTMLMotionProps<"button">, "ref"> {
   variant?: 'primary' | 'secondary' | 'ghost' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
@@ -31,7 +32,7 @@ export const Button: React.FC<ButtonProps> = ({
     whileTap={{ scale: 0.97 }}
     className={cn(variants[variant], sizes[size], className, (disabled || loading) && 'opacity-60 cursor-not-allowed')}
     disabled={disabled || loading}
-    {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+    {...props}
   >
     {loading ? (
       <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />

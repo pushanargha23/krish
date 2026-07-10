@@ -1,5 +1,5 @@
 import React from 'react';
-import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { HeroSection } from '../components/home/HeroSection';
 import { BannerSlider } from '../components/home/BannerSlider';
 import { TrustedBy } from '../components/home/TrustedBy';

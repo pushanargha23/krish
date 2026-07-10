@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { overlayVariants, drawerVariants } from '../../animations/variants';
+import { overlayVariants } from '../../animations/variants';
 import { useBodyLock } from '../../hooks';
 import { FiX } from 'react-icons/fi';
 

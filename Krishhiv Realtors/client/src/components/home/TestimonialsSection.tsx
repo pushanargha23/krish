@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from '../../hooks';
 import { SectionHeader } from '../ui/SectionHeader';
 import { Rating } from '../ui/Rating';
-import { staggerContainer, staggerItem } from '../../animations/variants';
+
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const TESTIMONIALS = [
