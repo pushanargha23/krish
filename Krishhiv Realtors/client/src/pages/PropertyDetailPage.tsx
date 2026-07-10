@@ -14,6 +14,8 @@ import { propertyService, appointmentService } from '../api/services';
 import { useWishlist } from '../context/WishlistContext';
 import { formatPrice, formatArea, calculateEMI, getWhatsAppLink, shareProperty } from '../utils';
 import { APP_WHATSAPP } from '../constants';
+import { FloatingInput } from '../components/shared/FloatingInput';
+import { FloatingSelect } from '../components/shared/FloatingSelect';
 
 import FacilityIcon from '../components/property/FacilityIcon';
 
@@ -98,25 +100,49 @@ const ScheduleVisit: React.FC<{ propertyId: string }> = ({ propertyId }) => {
   }
 
   return (
-    <div className="bg-surface rounded-xl border border-gray-100 shadow-card p-6">
-      <h3 className="font-heading font-semibold text-primary text-lg mb-5 flex items-center gap-2">
-        <FiCalendar size={18} className="text-secondary" /> Schedule a Visit
+    <div className="bg-surface rounded-2xl border border-gray-100 shadow-luxury p-6 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl" />
+      
+      <h3 className="font-heading font-semibold text-primary text-xl mb-6 flex items-center gap-2 relative z-10">
+        <FiCalendar size={20} className="text-secondary" /> Schedule a Visit
       </h3>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-        <input {...register('name', { required: true })} placeholder="Your Name" className="input-luxury text-sm" />
-        <input {...register('email', { required: true })} type="email" placeholder="Email Address" className="input-luxury text-sm" />
-        <input {...register('phone', { required: true })} placeholder="Phone Number" className="input-luxury text-sm" />
-        <div className="grid grid-cols-2 gap-3">
-          <input {...register('date', { required: true })} type="date" min={new Date().toISOString().split('T')[0]} className="input-luxury text-sm" />
-          <select {...register('time')} className="input-luxury text-sm">
-            {['10:00 AM', '11:00 AM', '12:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'].map(t => (
-              <option key={t} value={t}>{t}</option>
-            ))}
-          </select>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 relative z-10">
+        <FloatingInput 
+          label="Your Name" 
+          registration={register('name', { required: true })} 
+        />
+        <FloatingInput 
+          label="Email Address" 
+          type="email"
+          registration={register('email', { required: true })} 
+        />
+        <FloatingInput 
+          label="Phone Number" 
+          registration={register('phone', { required: true })} 
+        />
+        <div className="grid grid-cols-2 gap-4">
+          <FloatingInput 
+            label="Date"
+            type="date" 
+            min={new Date().toISOString().split('T')[0]} 
+            registration={register('date', { required: true })} 
+          />
+          <FloatingSelect 
+            label="Time"
+            registration={register('time')} 
+            options={['10:00 AM', '11:00 AM', '12:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'].map(t => ({ value: t, label: t }))}
+          />
         </div>
-        <button type="submit" disabled={isSubmitting} className="btn-primary w-full justify-center">
-          {isSubmitting ? 'Booking...' : 'Book Site Visit'}
-        </button>
+        <div className="pt-2">
+          <button type="submit" disabled={isSubmitting} className="btn-primary w-full justify-center group relative overflow-hidden">
+            <span className="relative z-10 flex items-center gap-2">
+              {isSubmitting ? 'Booking...' : 'Book Site Visit'}
+              {!isSubmitting && <span className="group-hover:translate-x-1 transition-transform">→</span>}
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-white/20 to-secondary/0 -translate-x-full group-hover:animate-shimmer" />
+          </button>
+        </div>
       </form>
     </div>
   );

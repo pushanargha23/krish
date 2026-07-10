@@ -159,3 +159,7 @@ export const getProperties = async (): Promise<Property[]> => {
   // Fallback to empty array if nothing in localStorage
   return [];
 };
+
+export const saveProperties = (properties: Property[]) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(properties));
+};

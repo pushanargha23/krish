@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   FiGrid, FiHome, FiUsers, FiMessageSquare, FiSettings, FiLogOut,
   FiMenu, FiX, FiBarChart2, FiBriefcase, FiImage, FiFileText,
-  FiCalendar, FiMail, FiBell, FiSearch,
+  FiCalendar, FiMail, FiBell, FiSearch, FiDatabase,
 } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 import { APP_NAME } from '../constants';
@@ -19,6 +19,7 @@ const NAV = [
   { label: 'Blogs', to: '/admin/blogs', icon: FiFileText },
   { label: 'Gallery', to: '/admin/gallery', icon: FiImage },
   { label: 'Newsletter', to: '/admin/newsletter', icon: FiMail },
+  { label: 'Data Upload', to: '/admin/upload', icon: FiDatabase },
   { label: 'Analytics', to: '/admin/analytics', icon: FiBarChart2 },
   { label: 'Settings', to: '/admin/settings', icon: FiSettings },
 ];

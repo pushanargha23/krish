@@ -2,12 +2,15 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { FiPhone, FiMail, FiMapPin, FiClock, FiCheck } from 'react-icons/fi';
+import { FiPhone, FiMail, FiMapPin, FiClock, FiCheck, FiUser, FiMessageSquare } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { contactService } from '../api/services';
 import { APP_PHONE, APP_EMAIL, APP_WHATSAPP } from '../constants';
 import { getWhatsAppLink } from '../utils';
 import { fadeLeft, fadeRight } from '../animations/variants';
+import { FloatingInput } from '../components/shared/FloatingInput';
+import { FloatingTextarea } from '../components/shared/FloatingTextarea';
+import { FloatingSelect } from '../components/shared/FloatingSelect';
 
 interface ContactForm {
   name: string;
@@ -67,39 +70,56 @@ const ContactPage: React.FC = () => {
                   <p className="text-green-600">We'll get back to you within 2 business hours.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <input {...register('name', { required: 'Name is required' })} placeholder="Full Name" className="input-luxury" />
-                      {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
-                    </div>
-                    <div>
-                      <input {...register('phone', { required: 'Phone is required' })} placeholder="Phone Number" className="input-luxury" />
-                      {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
-                    </div>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white/60 backdrop-blur-xl p-8 rounded-3xl border border-white/50 shadow-luxury">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FloatingInput 
+                      label="Full Name" 
+                      registration={register('name', { required: 'Name is required' })} 
+                      error={errors.name?.message} 
+                      icon={<FiUser size={18} />} 
+                    />
+                    <FloatingInput 
+                      label="Phone Number" 
+                      registration={register('phone', { required: 'Phone is required' })} 
+                      error={errors.phone?.message} 
+                      icon={<FiPhone size={18} />} 
+                    />
                   </div>
-                  <div>
-                    <input {...register('email', { required: 'Email is required' })} type="email" placeholder="Email Address" className="input-luxury" />
-                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
-                  </div>
-                  <select {...register('subject')} className="input-luxury">
-                    <option value="">Select Subject</option>
-                    <option>Property Inquiry</option>
-                    <option>Schedule a Visit</option>
-                    <option>Investment Advisory</option>
-                    <option>NRI Services</option>
-                    <option>General Query</option>
-                  </select>
-                  <textarea
-                    {...register('message', { required: 'Message is required' })}
-                    rows={5}
-                    placeholder="Tell us about your requirements..."
-                    className="input-luxury resize-none"
+                  <FloatingInput 
+                    label="Email Address" 
+                    type="email"
+                    registration={register('email', { required: 'Email is required' })} 
+                    error={errors.email?.message} 
+                    icon={<FiMail size={18} />} 
                   />
-                  {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message.message}</p>}
-                  <button type="submit" disabled={isSubmitting} className="btn-primary w-full justify-center">
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
+                  <FloatingSelect 
+                    label="Subject" 
+                    registration={register('subject')} 
+                    icon={<FiMessageSquare size={18} />}
+                    options={[
+                      { value: 'Property Inquiry', label: 'Property Inquiry' },
+                      { value: 'Schedule a Visit', label: 'Schedule a Visit' },
+                      { value: 'Investment Advisory', label: 'Investment Advisory' },
+                      { value: 'NRI Services', label: 'NRI Services' },
+                      { value: 'General Query', label: 'General Query' }
+                    ]}
+                  />
+                  <FloatingTextarea
+                    label="Tell us about your requirements..."
+                    registration={register('message', { required: 'Message is required' })}
+                    rows={5}
+                    error={errors.message?.message}
+                  />
+                  
+                  <div className="pt-2">
+                    <button type="submit" disabled={isSubmitting} className="btn-primary w-full justify-center group relative overflow-hidden">
+                      <span className="relative z-10 flex items-center gap-2">
+                        {isSubmitting ? 'Sending...' : 'Send Message'}
+                        {!isSubmitting && <span className="group-hover:translate-x-1 transition-transform">→</span>}
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-secondary/0 via-white/20 to-secondary/0 -translate-x-full group-hover:animate-shimmer" />
+                    </button>
+                  </div>
                 </form>
               )}
             </motion.div>

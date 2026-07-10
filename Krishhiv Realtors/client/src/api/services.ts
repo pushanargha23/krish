@@ -1,32 +1,42 @@
 import type { PropertyFilters } from '../types';
-import { getProperties } from '../utils/csvParser';
+import { getProperties, saveProperties } from '../utils/csvParser';
 import {
   mockBlogs,
   mockBuilders,
   mockTestimonials,
   mockFaqs,
   mockCareers,
-  mockGallery
+  mockGallery,
+  mockUsers,
+  mockLeads,
+  mockAppointments,
+  mockNewsletter
 } from '../mockData';
 
 export const propertyService = {
-  getAll: async (filters: PropertyFilters) => {
+  getAll: async (filters?: PropertyFilters) => {
     try {
       const properties = await getProperties();
       let filtered = [...properties];
-
-      if (filters.type) filtered = filtered.filter(p => p.type === filters.type);
-      if (filters.city) filtered = filtered.filter(p => p.location.city === filters.city);
-      if (filters.minPrice && filters.maxPrice) {
+      if (filters?.type) filtered = filtered.filter(p => p.type === filters.type);
+      if (filters?.city) filtered = filtered.filter(p => p.location.city === filters.city);
+      if (filters?.minPrice && filters.maxPrice) {
         filtered = filtered.filter(p => p.price >= filters.minPrice! && p.price <= filters.maxPrice!);
       }
-
       return { data: { data: filtered, success: true } };
     } catch (error) {
       throw error;
     }
   },
-
+  getFeatured: async () => {
+    try {
+      const properties = await getProperties();
+      const featured = properties.filter(p => p.isFeatured);
+      return { data: { data: featured, success: true } };
+    } catch (error) {
+      throw error;
+    }
+  },
   getBySlug: async (slug: string) => {
     try {
       const properties = await getProperties();
@@ -37,241 +47,101 @@ export const propertyService = {
       throw error;
     }
   },
-
-  getFeatured: async () => {
+  create: async (payload: any) => {
     try {
       const properties = await getProperties();
-      const data = properties.filter(p => p.isFeatured);
-      return { data: { data, success: true } };
+      const newProperty = { 
+        ...payload, 
+        _id: `prop_${Date.now()}`,
+        slug: payload.title?.toLowerCase().replace(/\s+/g, '-') || `prop-${Date.now()}`,
+        createdAt: new Date().toISOString(),
+        location: { city: payload.city || '' },
+        images: payload.photo ? [{ url: payload.photo, publicId: 'img1', alt: payload.title || 'Property', isPrimary: true }] : []
+      };
+      properties.push(newProperty);
+      saveProperties(properties);
+      return { data: { data: newProperty, success: true } };
     } catch (error) {
       throw error;
     }
   },
-
-  getRelated: async (id: string, type: string) => {
+  update: async (id: string, payload: any) => {
     try {
       const properties = await getProperties();
-      const data = properties
-        .filter(p => p.type === type && p._id !== id)
-        .slice(0, 3);
-      return { data: { data, success: true } };
+      const index = properties.findIndex(p => p._id === id);
+      if (index === -1) throw new Error('Property not found');
+      const updatedProperty = { ...properties[index], ...payload };
+      if (payload.city) updatedProperty.location = { ...updatedProperty.location, city: payload.city };
+      if (payload.photo) updatedProperty.images = [{ url: payload.photo, publicId: 'img1', alt: updatedProperty.title || 'Property', isPrimary: true }];
+      properties[index] = updatedProperty;
+      saveProperties(properties);
+      return { data: { data: updatedProperty, success: true } };
     } catch (error) {
       throw error;
     }
   },
-
-  search: async (query: string) => {
+  delete: async (id: string) => {
     try {
-      const properties = await getProperties();
-      const results = properties.filter(prop =>
-        prop.title?.toLowerCase().includes(query.toLowerCase()) ||
-        prop.location.address?.toLowerCase().includes(query.toLowerCase())
-      );
-      return { data: { data: results, success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
-
-  toggleWishlist: async (_propertyId: string, _userId: string) => {
-    try {
-      return { data: { data: { wishlisted: true }, success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
-
-  trackView: async (_propertyId: string) => {
-    try {
+      let properties = await getProperties();
+      properties = properties.filter(p => p._id !== id);
+      saveProperties(properties);
       return { data: { success: true } };
     } catch (error) {
       throw error;
     }
-  },
+  }
 };
 
-export const leadService = {
-  create: async (_payload: {
-    name: string; email: string; phone: string;
-    message?: string; propertyId?: string; source: string;
-  }) => {
-    try {
-      return { data: { data: { id: 'mock_lead_id' }, success: true } };
-    } catch (error) {
-      throw error;
-    }
+const createMockCRUD = (mockArray: any[], prefix: string) => ({
+  getAll: async () => ({ data: { data: mockArray, success: true } }),
+  create: async (payload: any) => {
+    const newItem = { ...payload, _id: `${prefix}_${Date.now()}`, createdAt: new Date().toISOString() };
+    mockArray.push(newItem);
+    return { data: { data: newItem, success: true } };
   },
-};
+  update: async (id: string, payload: any) => {
+    const index = mockArray.findIndex((item: any) => item._id === id);
+    if (index !== -1) mockArray[index] = { ...mockArray[index], ...payload };
+    return { data: { data: mockArray[index], success: true } };
+  },
+  delete: async (id: string) => {
+    const index = mockArray.findIndex((item: any) => item._id === id);
+    if (index !== -1) mockArray.splice(index, 1);
+    return { data: { success: true } };
+  }
+});
 
+export const leadService = createMockCRUD(mockLeads, 'lead');
 export const appointmentService = {
-  book: async (_payload: {
-    name: string; email: string; phone: string;
-    propertyId: string; date: string; time: string; type: string;
-  }) => {
-    try {
-      return { data: { data: { id: 'mock_appt_id' }, success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
+  ...createMockCRUD(mockAppointments, 'appt'),
+  book: async (payload: any) => {
+    const newItem = { ...payload, _id: `appt_${Date.now()}`, createdAt: new Date().toISOString() };
+    mockAppointments.push(newItem);
+    return { data: { data: newItem, success: true } };
+  }
 };
-
-export const blogService = {
-  getAll: async (params?: { category?: string; page?: number; limit?: number }) => {
-    try {
-      let filtered = [...mockBlogs];
-      if (params?.category) {
-        filtered = filtered.filter(b => b.category === params.category);
-      }
-      return { data: { data: { blogs: filtered, pagination: { page: 1, limit: 10, total: filtered.length } }, success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
-
-  getBySlug: async (slug: string) => {
-    try {
-      const blog = mockBlogs.find(b => b.slug === slug);
-      if (!blog) throw new Error('Blog not found');
-      return { data: { data: blog, success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
-};
-
-export const testimonialService = {
-  getAll: async () => {
-    try {
-      return { data: { data: mockTestimonials, success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
-};
-
-export const builderService = {
-  getAll: async () => {
-    try {
-      return { data: { data: mockBuilders, success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
-
-  getBySlug: async (slug: string) => {
-    try {
-      const builder = mockBuilders.find(b => b.slug === slug);
-      if (!builder) throw new Error('Builder not found');
-      return { data: { data: builder, success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
-};
-
-export const faqService = {
-  getAll: async () => {
-    try {
-      return { data: { data: mockFaqs, success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
-};
-
-export const galleryService = {
-  getAll: async (category?: string) => {
-    try {
-      let filtered = [...mockGallery];
-      if (category) {
-        filtered = filtered.filter(g => g.category === category);
-      }
-      return { data: { data: filtered, success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
-};
-
-export const careerService = {
-  getAll: async () => {
-    try {
-      return { data: { data: mockCareers, success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
-
-  apply: async (_careerId: string, _formData: FormData) => {
-    try {
-      return { data: { success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
-};
-
-export const contactService = {
-  send: async (payload: { name: string; email: string; phone: string; subject: string; message: string }) => {
-    try {
-      const formData = new FormData();
-      formData.append('access_key', 'f3b6c457-c2d8-4f86-9316-07e40d9dc956');
-      formData.append('name', payload.name);
-      formData.append('email', payload.email);
-      formData.append('phone', payload.phone);
-      formData.append('subject', payload.subject || 'General Inquiry');
-      formData.append('message', payload.message);
-
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.error || 'Failed to send message');
-      }
-      return await response.json();
-    } catch (error) {
-      console.error("Error sending contact form:", error);
-      throw error;
-    }
-  },
-};
-
+export const builderService = createMockCRUD(mockBuilders, 'builder');
+export const blogService = createMockCRUD(mockBlogs, 'blog');
+export const galleryService = createMockCRUD(mockGallery, 'gal');
+export const testimonialService = createMockCRUD(mockTestimonials, 'test');
+export const faqService = createMockCRUD(mockFaqs, 'faq');
+export const careerService = createMockCRUD(mockCareers, 'career');
 export const newsletterService = {
-  subscribe: async (_email: string) => {
-    try {
-      return { data: { success: true } };
-    } catch (error) {
-      throw error;
-    }
-  },
+  ...createMockCRUD(mockNewsletter, 'news'),
+  subscribe: async (_email: string) => ({ data: { success: true } })
 };
 
 export const authService = {
-  login: async (_email: string, _password: string) => {
-    return { data: { success: true } };
-  },
+  ...createMockCRUD(mockUsers, 'user'),
+  getAllUsers: async () => ({ data: { data: mockUsers, success: true } }),
+  login: async () => ({ data: { success: true } }),
+  register: async () => ({ data: { success: true } }),
+  logout: async () => ({ data: { success: true } }),
+  getMe: async () => ({ data: { success: true } }),
+  forgotPassword: async () => ({ data: { success: true } }),
+  resetPassword: async () => ({ data: { success: true } }),
+};
 
-  register: async (_payload: { name: string; email: string; phone: string; password: string }) => {
-    return { data: { success: true } };
-  },
-
-  logout: async () => {
-    return { data: { success: true } };
-  },
-
-  getMe: async () => {
-    return { data: { success: true } };
-  },
-
-  forgotPassword: async (_email: string) => {
-    return { data: { success: true } };
-  },
-
-  resetPassword: async (_token: string, _password: string) => {
-    return { data: { success: true } };
-  },
+export const contactService = {
+  send: async (_payload: any) => ({ success: true })
 };

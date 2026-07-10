@@ -28,7 +28,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = useCallback(async (email: string, password: string) => {
     // Mock login
-    if (email && password) {
+    if (email === 'admin' && password === 'admin123') {
+      const mockUser = {
+        _id: 'admin_123',
+        name: 'Admin',
+        email,
+        role: 'admin',
+      } as User;
+      setUser(mockUser);
+      localStorage.setItem('krisshiv_user', JSON.stringify(mockUser));
+    } else if (email && password) {
       const mockUser = {
         _id: 'mock_user_123',
         name: 'Mock User',

@@ -1,0 +1,81 @@
+import React, { useState } from 'react';
+import type { UseFormRegisterReturn } from 'react-hook-form';
+
+interface FloatingSelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  label: string;
+  registration: UseFormRegisterReturn;
+  error?: string;
+  icon?: React.ReactNode;
+  options: { value: string; label: string }[];
+}
+
+export const FloatingSelect: React.FC<FloatingSelectProps> = ({ 
+  label, 
+  registration, 
+  error, 
+  icon,
+  options,
+  className = '',
+  ...props 
+}) => {
+  const [isFocused, setIsFocused] = useState(false);
+  
+  return (
+    <div className={`relative w-full ${className}`}>
+      <div className="relative flex items-center">
+        {icon && (
+          <div className={`absolute left-4 z-10 transition-colors duration-300 ${isFocused ? 'text-secondary' : 'text-gray-400'}`}>
+            {icon}
+          </div>
+        )}
+        <select
+          {...registration}
+          {...props}
+          onFocus={(e) => {
+            setIsFocused(true);
+            if (props.onFocus) props.onFocus(e);
+          }}
+          onBlur={(e) => {
+            setIsFocused(false);
+            registration.onBlur(e);
+          }}
+          className={`
+            peer w-full bg-white/50 backdrop-blur-md border border-gray-200 text-gray-900 rounded-xl
+            px-4 pt-6 pb-2 transition-all duration-300 outline-none appearance-none
+            focus:bg-white focus:border-secondary focus:ring-4 focus:ring-secondary/10
+            hover:border-secondary/50
+            ${icon ? 'pl-11' : ''}
+            ${error ? 'border-red-400 focus:border-red-500 focus:ring-red-100' : ''}
+          `}
+        >
+          <option value="" disabled hidden></option>
+          {options.map(opt => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+        
+        {/* Custom Chevron icon for Select */}
+        <div className="absolute right-4 pointer-events-none text-gray-400">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+        </div>
+
+        <label
+          className={`
+            absolute text-gray-500 transition-all duration-300 pointer-events-none
+            ${icon ? 'left-11' : 'left-4'}
+            top-4 -translate-y-4 text-xs font-medium text-secondary
+            peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm peer-placeholder-shown:text-gray-400 peer-placeholder-shown:font-normal
+            peer-focus:top-4 peer-focus:-translate-y-4 peer-focus:text-xs peer-focus:font-medium peer-focus:text-secondary
+          `}
+        >
+          {label}
+        </label>
+      </div>
+      {error && (
+        <p className="absolute -bottom-5 left-1 text-red-500 text-xs font-medium animate-fade-in">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+};

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Navbar } from '../components/shared/Navbar';
 import { Footer } from '../components/shared/Footer';
 import { WhatsAppButton } from '../components/shared/WhatsAppButton';
+import { LeadCapturePopup } from '../components/shared/LeadCapturePopup';
 import { pageTransition } from '../animations/variants';
 
 export const MainLayout: React.FC = () => {
@@ -23,6 +24,7 @@ export const MainLayout: React.FC = () => {
       </AnimatePresence>
       <Footer />
       <WhatsAppButton />
+      <LeadCapturePopup />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiInstagram, FiFacebook, FiLinkedin, FiYoutube, FiTwitter, FiPhone, FiMail, FiMapPin, FiArrowRight } from 'react-icons/fi';
+import { FiInstagram, FiFacebook, FiLinkedin, FiYoutube, FiTwitter, FiPhone, FiMail, FiMapPin, FiArrowRight, FiLock } from 'react-icons/fi';
 import { APP_NAME, APP_PHONE, APP_EMAIL, APP_ADDRESS, SOCIAL_LINKS } from '../../constants';
 import { newsletterService } from '../../api/services';
 
@@ -153,7 +153,12 @@ export const Footer: React.FC = () => {
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
         <div className="container-custom py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-          <span>© {new Date().getFullYear()} {APP_NAME}. All rights reserved.</span>
+          <div className="flex items-center gap-2">
+            <span>© {new Date().getFullYear()} {APP_NAME}. All rights reserved.</span>
+            <Link to="/admin" className="p-1 hover:bg-white/5 rounded transition-colors" title="Admin Panel">
+              <FiLock size={12} />
+            </Link>
+          </div>
           <div className="flex items-center gap-4">
             <Link to="/privacy-policy" className="hover:text-secondary transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-secondary transition-colors">Terms of Service</Link>

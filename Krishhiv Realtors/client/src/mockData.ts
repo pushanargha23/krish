@@ -60,3 +60,23 @@ export const mockTestimonials: Testimonial[] = [];
 export const mockFaqs: FAQ[] = [];
 export const mockCareers: Career[] = [];
 export const mockGallery: GalleryItem[] = [];
+
+// New Mock Data for Admin Sections
+export const mockUsers: any[] = [
+  { _id: 'u1', name: 'John Doe', email: 'john@example.com', role: 'user', createdAt: new Date().toISOString() },
+  { _id: 'u2', name: 'Agent Smith', email: 'smith@example.com', role: 'agent', createdAt: new Date().toISOString() },
+];
+
+export const mockLeads: any[] = [
+  { _id: 'l1', name: 'Rahul Singhania', email: 'rahul@example.com', phone: '9876543210', source: 'contact', status: 'new', createdAt: new Date().toISOString() },
+  { _id: 'l2', name: 'Priya Mehta', email: 'priya@example.com', phone: '9876543211', source: 'property', status: 'contacted', createdAt: new Date().toISOString() },
+];
+
+export const mockAppointments: any[] = [
+  { _id: 'a1', name: 'Vikram Nair', email: 'vikram@example.com', phone: '9876543212', type: 'site_visit', status: 'pending', date: '2023-11-20', time: '10:00 AM' },
+];
+
+export const mockNewsletter: any[] = [
+  { _id: 'n1', email: 'subscriber1@example.com', createdAt: new Date().toISOString() },
+  { _id: 'n2', email: 'subscriber2@example.com', createdAt: new Date().toISOString() },
+];
